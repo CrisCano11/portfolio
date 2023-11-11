@@ -4,28 +4,32 @@ import NotFound from "../components/shared/NotFound";
 import AboutMe from "../pages/AboutMe";
 import Contact from "../pages/Contact";
 import Projects from "../pages/Projects";
+import Home from "../pages/Home";
 
 
 
 export const router = createBrowserRouter([
     {
-        path: '/',
-        element: <App/>,
-        errorElement:<NotFound/>,
+        path:'/',
+        element:<App />,
+        errorElement:<NotFound />,
+        children: [
+            {
+                index: true,
+                element: <Home />,
+            },
+            {
+                path: '/about',
+                element: <AboutMe />,
+            },
+            {
+                path: '/projects',
+                element: <Projects />,
+            },
+            {
+                path: '/contact',
+                element: <Contact />,
+            }
+        ]
     },
-    {
-        path: '/about',
-        element: <AboutMe/>,
-        errorElement:<NotFound/>,
-    },
-    {
-        path: '/projects',
-        element: <Projects/>,
-        errorElement:<NotFound/>,
-    },
-    {
-        path: '/contact',
-        element: <Contact/>,
-        errorElement:<NotFound/>,
-    }
 ]);

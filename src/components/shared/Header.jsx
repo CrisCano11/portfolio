@@ -12,8 +12,8 @@ import Name from '../../../public/name.png'
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [activeTheme, setTheme] = useThemeSwitcher();
-
+    const {activeTheme, setTheme} = useThemeSwitcher();
+    console.log(activeTheme)
     function toggleMenu() {
         if (!showMenu) {
             setShowMenu(true);
@@ -150,12 +150,12 @@ const Header = () => {
                         <div
                             onClick={() => setTheme(activeTheme)}
                             aria-label="Theme Switcher"
-                            className=" group ml-8 bg-primary-light dark:bg-ternary-dark p-3 shadow-sm rounded-xl cursor-pointer hover:bg-gray-500  dark:hover:bg-primary-dark "
+                            className=" group ml-8 bg-primary-light dark:bg-ternary-dark p-3 shadow-sm rounded-xl cursor-pointer  focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 dark:hover:bg-indigo-500 "
                         >
                             {activeTheme === 'dark' ? (
                                 <FiMoon className="text-ternary-dark group-hover:text-white dark:text-ternary-light dark:group-hover:text-primary-light text-xl" />
                             ) : (
-                                <FiSun className="text-gray-200 group-hover:text-gray-50 text-xl dark:group-hover:text-blue-400" />
+                                <FiSun className="text-gray-200 group-hover:text-gray-50 text-xl dark:group-hover:text-white" />
                             )}
                         </div>
                 </div>
