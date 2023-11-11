@@ -2,9 +2,11 @@ import { useState } from "react";
 import { FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 import useThemeSwitcher from "../../hooks/useThemeSwitcher";
 import { motion } from "framer-motion";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "../reusable/Button";
 import HireModal from "../HireModal";
+import Logo from '../../../public/logo.png';
+import Name from '../../../public/name.png'
 
 
 const Header = () => {
@@ -37,22 +39,15 @@ const Header = () => {
             id="nav"
             className="sm:container sm:mx-auto"
         >
-            <div className="z-10 max-w-screen-lg xl:max-w-screen-xl blok sm:flex sm:justify-between sm:items-center py-6">
+            <div className="z-10 max-w-screen-lg xl:max-w-screen-xl block sm:flex sm:justify-between sm:items-center py-6">
                 <div className="flex justify-between items-center px-4 sm:px-0">
-                    <div>
-                        <Link to="/">
-                            {activeTheme === 'dark' ? (
-                                <img
-                                    src=""
-                                    alt="Dark logo"
-                                />
-                            ) : (
-                                <img
-                                    src=""
-                                    alt=""
-                                />
-                            )}
-                        </Link>
+                    <div className="flex justify-between items-center">
+                        <NavLink to="/">
+                            <img src={Logo} alt="Logo" className="w-32" />
+                        </NavLink>
+                        <NavLink to="/">
+                            <img src={Name} alt="nombre" className="w-48" />
+                        </NavLink>
                     </div>
                     <div
                         onClick={() => setTheme(activeTheme)}
@@ -120,21 +115,21 @@ const Header = () => {
                 <div className="font-general-medium hidden m-0 sm:ml-4 mt-5 sm:mt-3 sm:flex p-5 sm:p-0 justify-center items-center shadow-lg sm:shadow-none">
                     <NavLink
                         to="/projects"
-                        className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
+                        className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light font-bold sm:mx-4 mb-2 sm:py-2"
                         aria-label="Projects"
                     >
                         Projects
                     </NavLink>
                     <NavLink
                         to="/about"
-                        className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
+                        className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light  font-bold sm:mx-4 mb-2 sm:py-2"
                         aria-label="About Me"
                     >
                         About Me
                     </NavLink>
                     <NavLink
                         to="/contact"
-                        className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
+                        className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light  font-bold sm:mx-4 mb-2 sm:py-2"
                         aria-label="Contact"
                     >
                         Contact
@@ -152,29 +147,29 @@ const Header = () => {
                     </div>
 
                     {/* Theme switcher large screen */}
-                    <div
-                        onClick={() => setTheme(activeTheme)}
-                        aria-label="Theme Switcher"
-                        className="ml-8 bg-primary-light dark:bg-ternary-dark p-3 shadow-sm rounded-xl cursor-pointer"
-                    >
-                        {activeTheme === 'dark' ? (
-                            <FiMoon className="text-ternary-dark hover:text-gray-400 dark:text-ternary-light dark:hover:text-primary-light text-xl" />
-                        ) : (
-                            <FiSun className="text-gray-200 hover:text-gray-50 text-xl" />
-                        )}
-                    </div>
+                        <div
+                            onClick={() => setTheme(activeTheme)}
+                            aria-label="Theme Switcher"
+                            className=" group ml-8 bg-primary-light dark:bg-ternary-dark p-3 shadow-sm rounded-xl cursor-pointer hover:bg-gray-500  dark:hover:bg-primary-dark "
+                        >
+                            {activeTheme === 'dark' ? (
+                                <FiMoon className="text-ternary-dark group-hover:text-white dark:text-ternary-light dark:group-hover:text-primary-light text-xl" />
+                            ) : (
+                                <FiSun className="text-gray-200 group-hover:text-gray-50 text-xl dark:group-hover:text-blue-400" />
+                            )}
+                        </div>
                 </div>
             </div>
 
             <div>
-				{showModal ? (
-					<HireModal
-						onClose={showModalHire}
-						onRequest={showModalHire}
-					/>
-				) : null}
-				{showModal ? showModalHire : null}
-			</div>
+                {showModal ? (
+                    <HireModal
+                        onClose={showModalHire}
+                        onRequest={showModalHire}
+                    />
+                ) : null}
+                {showModal ? showModalHire : null}
+            </div>
         </motion.nav>
     )
 }
