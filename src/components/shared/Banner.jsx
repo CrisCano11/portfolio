@@ -4,6 +4,7 @@ import developerLight from '../../images/developer.svg';
 import developerDark from '../../images/developer-dark.svg';
 import { motion } from "framer-motion"
 import { FiArrowDownCircle } from "react-icons/fi"
+import { PiHandWavingFill } from "react-icons/pi";
 
 const Banner = () => {
     const isSpanish = useDetectLanguage();
@@ -21,9 +22,9 @@ const Banner = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ ease: 'easeInOut', duration: 0.9, delay: 0.1 }}
-                    className="font-general-semibold text-2xl lg:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
+                    className="font-general-semibold text-2xl lg:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase flex items-center"
                 >
-                    Hi, I am Cristhian Cano
+                   <PiHandWavingFill className="lg:text-8xl xl:text-9xl mr-2 sm:text-2xl md:text-4xl xs:text-xl" /> {isSpanish ? " Hola, Soy Cristhian Cano":"Hi, I am Cristhian Cano"}
                 </motion.h1>
                 <motion.h1
                     initial={{ opacity: 0 }}
@@ -31,7 +32,7 @@ const Banner = () => {
                     transition={{ ease: 'easeInOut', duration: 0.9, delay: 0.1 }}
                     className="font-general-semibold mt-4 text-lg md:text-xl lg:text-2xl xl:text-3xl text-center sm:text-left leading-normal text-gray-500 dark:text-gray-200"
                 >
-                    A Systems Engineer & Full-Stack Developer
+                   {isSpanish ? "Ingeniero de Sistemas y Desarrollador Web Full Stack":"A Systems Engineer & Full-Stack Developer"}
                 </motion.h1>
                 <motion.div
                     initial={{ opacity: 0 }}

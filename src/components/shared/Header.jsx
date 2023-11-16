@@ -7,12 +7,14 @@ import Button from "../reusable/Button";
 import HireModal from "../HireModal";
 import Logo from '../../../public/logo.png';
 import Name from '../../../public/name.png'
+import useDetectLanguage from "../../hooks/useDetectLanguage";
 
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const {activeTheme, setTheme} = useThemeSwitcher();
+    const { activeTheme, setTheme } = useThemeSwitcher();
+    const isSpanish = useDetectLanguage();
     console.log(activeTheme)
     function toggleMenu() {
         if (!showMenu) {
@@ -116,23 +118,23 @@ const Header = () => {
                     <NavLink
                         to="/projects"
                         className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light font-bold sm:mx-4 mb-2 sm:py-2"
-                        aria-label="Projects"
+                        aria-label={isSpanish ? 'Proyectos' : 'Projects'}
                     >
-                        Projects
+                        {isSpanish ? 'Proyectos' : 'Projects'}
                     </NavLink>
                     <NavLink
                         to="/about"
                         className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light  font-bold sm:mx-4 mb-2 sm:py-2"
-                        aria-label="About Me"
+                        aria-label={isSpanish ? 'Sobre mi' : "About Me"}
                     >
-                        About Me
+                        {isSpanish ? 'Sobre mi' : 'About Me'}
                     </NavLink>
                     <NavLink
                         to="/contact"
                         className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light  font-bold sm:mx-4 mb-2 sm:py-2"
-                        aria-label="Contact"
+                        aria-label={isSpanish ? "Contacto" :"Contact"}
                     >
-                        Contact
+                       {isSpanish ? "Contacto" : "Contact"}
                     </NavLink>
                 </div>
                 <div className="hidden sm:flex justify-between items-center flex-col md:flex-row">
@@ -140,24 +142,24 @@ const Header = () => {
                         <span
                             onClick={showModalHire}
                             className="text-md font-general-medium bg-indigo-500 hover:bg-indigo-600 text-white shadow-sm rounded-md px-5 py-2.5 duration-300"
-                            aria-label="Hire Me Button"
+                            aria-label={isSpanish ? "Contratarme":"Hire Me"}
                         >
-                            <Button title="Hire Me" />
+                            <Button title={isSpanish ? "Contratarme":"Hire Me"} />
                         </span>
                     </div>
 
                     {/* Theme switcher large screen */}
-                        <div
-                            onClick={() => setTheme(activeTheme)}
-                            aria-label="Theme Switcher"
-                            className=" group ml-8 bg-primary-light dark:bg-ternary-dark p-3 shadow-sm rounded-xl cursor-pointer  focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 dark:hover:bg-indigo-500 "
-                        >
-                            {activeTheme === 'dark' ? (
-                                <FiMoon className="text-ternary-dark group-hover:text-white dark:text-ternary-light dark:group-hover:text-primary-light text-xl" />
-                            ) : (
-                                <FiSun className="text-gray-200 group-hover:text-gray-50 text-xl dark:group-hover:text-white" />
-                            )}
-                        </div>
+                    <div
+                        onClick={() => setTheme(activeTheme)}
+                        aria-label="Theme Switcher"
+                        className=" group ml-8 bg-primary-light dark:bg-ternary-dark p-3 shadow-sm rounded-xl cursor-pointer  focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 dark:hover:bg-indigo-500 "
+                    >
+                        {activeTheme === 'dark' ? (
+                            <FiMoon className="text-ternary-dark group-hover:text-white dark:text-ternary-light dark:group-hover:text-primary-light text-xl" />
+                        ) : (
+                            <FiSun className="text-gray-200 group-hover:text-gray-50 text-xl dark:group-hover:text-white" />
+                        )}
+                    </div>
                 </div>
             </div>
 
