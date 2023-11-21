@@ -5,14 +5,15 @@ import AboutMe from "../pages/AboutMe";
 import Contact from "../pages/Contact";
 import Projects from "../pages/Projects";
 import Home from "../pages/Home";
+import Project from "../pages/Project";
 
 
 
 export const router = createBrowserRouter([
     {
-        path:'/',
-        element:<App />,
-        errorElement:<NotFound />,
+        path: '/',
+        element: <App />,
+        errorElement: <NotFound />,
         children: [
             {
                 index: true,
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <Contact />,
+            },
+            {
+                path: '/project/:id',
+                element: <Project />
             }
         ]
     },
