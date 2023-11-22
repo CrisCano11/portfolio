@@ -5,7 +5,7 @@ import SingleProjectContext from '../../context/SingleProjectContext';
 const ProjectSingleHeader = () => {
 
 	const { singleProjectData } = useContext(SingleProjectContext);
-console.log(singleProjectData);
+
 	return (
 		<div>
 			<p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7">
