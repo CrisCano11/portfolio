@@ -1,5 +1,7 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import SingleProjectContext from '../../context/SingleProjectContext';
+import { FaPhp } from 'react-icons/fa';
+
 
 const ProjectInfo = () => {
 	const { singleProjectData } = useContext(SingleProjectContext);
@@ -20,12 +22,12 @@ const ProjectInfo = () => {
 										className="font-general-regular text-ternary-dark dark:text-ternary-light"
 										key={info.id}
 									>
-										<span>{info.title}: </span>
+										<span className='font-bold'>{info.title}: </span>
 										<a
 											href="#"
 											className={
 												info.title === 'Website' ||
-												info.title === 'Phone'
+													info.title === 'Phone'
 													? 'hover:underline hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer duration-300'
 													: ''
 											}
@@ -45,7 +47,7 @@ const ProjectInfo = () => {
 					<p className="font-general-regular text-2xl font-semibold text-ternary-dark dark:text-ternary-light mb-2">
 						{singleProjectData.ProjectInfo.ObjectivesHeading}
 					</p>
-					<p className="font-general-regular text-primary-dark dark:text-ternary-light">
+					<p className="font-general-regular text-primary-dark dark:text-ternary-light text-justify">
 						{singleProjectData.ProjectInfo.ObjectivesDetails}
 					</p>
 				</div>
@@ -53,12 +55,23 @@ const ProjectInfo = () => {
 				{/* Single project technologies */}
 				<div className="mb-7">
 					<p className="font-general-regular text-2xl font-semibold text-ternary-dark dark:text-ternary-light mb-2">
-						{singleProjectData.ProjectInfo.Technologies[0].title}
+						{singleProjectData.ProjectInfo.Technologies.title}
 					</p>
 					<p className="font-general-regular text-primary-dark dark:text-ternary-light">
-						{singleProjectData.ProjectInfo.Technologies[0].techs.join(
-							', '
-						)}
+
+						{singleProjectData.ProjectInfo.Technologies.techs.map(
+							(tech) => {
+								return (
+									<div className="flex gap-2" key={tech.tex}>
+										<span span className="text-lg lg:text-2xl" >
+											{tech.icon}
+										</span>
+										<span className="text-md">
+											{tech.text}
+										</span>
+									</div>
+								);
+							})}
 					</p>
 				</div>
 
@@ -105,7 +118,7 @@ const ProjectInfo = () => {
 					);
 				})}
 			</div>
-		</div>
+		</div >
 	);
 };
 

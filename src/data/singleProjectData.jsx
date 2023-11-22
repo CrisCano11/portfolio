@@ -7,10 +7,19 @@ import cerdos_3 from '../images/cerdos_3.webp';
 import bosque_1 from '../images/bosque_1.webp';
 import bosque_2 from '../images/bosque_2.webp';
 import bosque_3 from '../images/bosque_3.webp';
+import pwa_1 from '../images/pwa_1.webp';
+import pwa_2 from '../images/pwa_2.webp';
+import pwa_3 from '../images/pwa_3.webp';
 
 import {
 	FiLinkedin,
 } from 'react-icons/fi';
+
+import { FaHtml5, FaCss3Alt, FaBootstrap, FaPhp, FaReact } from "react-icons/fa";
+import { IoLogoJavascript } from "react-icons/io";
+import { DiMysql, DiCodeigniter } from "react-icons/di";
+import { BiLogoJquery, BiLogoTailwindCss, BiLogoFirebase } from "react-icons/bi";
+
 
 export const singleProjectData =
 {
@@ -344,21 +353,20 @@ export const singleProjectData =
 				ObjectivesHeading: 'Objetivo',
 				ObjectivesDetails:
 					'Desarrollar un aplicativo web para gestionar la información de las viviendas VIP y VIS de forma integral en el IDM',
-				Technologies: [
-					{
-						title: 'Herramientas y Tecnologias',
-						techs: [
-							'HTML',
-							'CSS',
-							'JavaScript',
-							'JQuery',
-							'Bootstrap',
-							'PHP',
-							'Codeigniter',
-							'MySQL',
-						],
-					},
-				],
+				Technologies:
+				{
+					title: 'Herramientas y Tecnologias',
+					techs: [
+						{ text: 'HTML', icon: <FaHtml5 /> },
+						{ text: 'CSS', icon: <FaCss3Alt /> },
+						{ text: 'JavaScript', icon: <IoLogoJavascript /> },
+						{ text: 'JQuery', icon: <BiLogoJquery /> },
+						{ text: 'Bootstrap', icon: <FaBootstrap /> },
+						{ text: 'PHP', icon: <FaPhp /> },
+						{ text: 'Codeigniter', icon: <DiCodeigniter /> },
+						{ text: 'MySQL', icon: <DiMysql /> },
+					],
+				},
 				ProjectDetailsHeading: 'Desafio',
 				ProjectDetails: [
 					{
@@ -433,21 +441,20 @@ export const singleProjectData =
 				ObjectivesHeading: 'Objetivo',
 				ObjectivesDetails:
 					'Facilitar y agilizar el proceso de venta al tiempo que proporciona información en tiempo real sobre inventarios y ventas para optimizar la gestión y la toma de decisiones en el negocio',
-				Technologies: [
-					{
-						title: 'Herramientas y Tecnologias',
-						techs: [
-							'HTML',
-							'CSS',
-							'JavaScript',
-							'JQuery',
-							'Bootstrap',
-							'PHP',
-							'Codeigniter',
-							'MySQL',
-						],
-					},
-				],
+				Technologies:
+				{
+					title: 'Herramientas y Tecnologias',
+					techs: [
+						{ text: 'HTML', icon: <FaHtml5 /> },
+						{ text: 'CSS', icon: <FaCss3Alt /> },
+						{ text: 'JavaScript', icon: <IoLogoJavascript /> },
+						{ text: 'JQuery', icon: <BiLogoJquery /> },
+						{ text: 'Bootstrap', icon: <FaBootstrap /> },
+						{ text: 'PHP', icon: <FaPhp /> },
+						{ text: 'Codeigniter', icon: <DiCodeigniter /> },
+						{ text: 'MySQL', icon: <DiMysql /> },
+					],
+				},
 				ProjectDetailsHeading: 'Desafio',
 				ProjectDetails: [
 					{
@@ -471,7 +478,7 @@ export const singleProjectData =
 							'Seguridad y Cumplimiento: Garantizar la seguridad de los datos del cliente y cumplir con las regulaciones de protección de datos es fundamental. El sistema debe implementar medidas de seguridad robustas y estar en conformidad con las normativas aplicables.',
 					},
 				],
-				SocialSharingHeading: 'Share This',
+				SocialSharingHeading: 'Comparte',
 				SocialSharing: [
 					{
 						id: 1,
@@ -485,11 +492,206 @@ export const singleProjectData =
 				title: 'Proyectos Relacionados',
 				Projects: [
 					{
-						id: 1,
+						id: 3,
 						title: 'Aplicación Web',
-						name:'Sistema de gestión de datos y visita de campo',
+						name: 'Sistema POS para Restaurante',
 						img: bosque_1,
 					}
+				],
+			},
+		},
+		3: {
+			ProjectHeader: {
+				title: 'Sistema POS para Restaurante',
+				publishDate: 'Jul 2, 2022',
+				tags: 'Administracion / Backend',
+			},
+			ProjectImages: [
+				{
+					id: 1,
+					title: 'Mesas',
+					img: bosque_1,
+				},
+				{
+					id: 2,
+					title: 'Registro de ventas',
+					img: bosque_2,
+				},
+				{
+					id: 3,
+					title: 'Reportes',
+					img: bosque_3,
+				},
+			],
+			ProjectInfo: {
+				ClientHeading: 'Cliente',
+				CompanyInfo: [
+					{
+						id: 1,
+						title: 'Nombre',
+						details: 'Pesca Deportiva y Balneario el Bosque',
+					},
+					{
+						id: 2,
+						title: 'Servicios',
+						details: 'Pesca, Restaurante y Cafe',
+					},
+					{
+						id: 3,
+						title: 'Ubicacion',
+						details: 'Pereira / Risaralda',
+					},
+				],
+				ObjectivesHeading: 'Objetivo',
+				ObjectivesDetails:
+					'Facilitar y agilizar el proceso de venta al tiempo que proporciona información en tiempo real sobre inventarios y ventas para optimizar la gestión y la toma de decisiones en el negocio',
+				Technologies:
+				{
+					title: 'Herramientas y Tecnologias',
+					techs: [
+						{ text: 'HTML', icon: <FaHtml5 /> },
+						{ text: 'CSS', icon: <FaCss3Alt /> },
+						{ text: 'JavaScript', icon: <IoLogoJavascript /> },
+						{ text: 'JQuery', icon: <BiLogoJquery /> },
+						{ text: 'Bootstrap', icon: <FaBootstrap /> },
+						{ text: 'PHP', icon: <FaPhp /> },
+						{ text: 'Codeigniter', icon: <DiCodeigniter /> },
+						{ text: 'MySQL', icon: <DiMysql /> },
+					],
+				},
+				ProjectDetailsHeading: 'Desafio',
+				ProjectDetails: [
+					{
+						id: 1,
+						details:
+							'Manejo de Inventarios Específicos: La gestión de productos frescos y perecederos, como la carne, requiere un sistema que pueda realizar un seguimiento preciso de los niveles de inventario, fechas de caducidad y rotación de productos.',
+					},
+					{
+						id: 2,
+						details:
+							'Variedad de Cortes y Productos: Las carnicerías ofrecen una amplia variedad de cortes de carne y productos relacionados. El sistema debe ser lo suficientemente flexible para manejar diferentes tipos de productos, precios por peso y opciones de empaque.',
+					},
+					{
+						id: 3,
+						details:
+							'Interfaz de Usuario Amigable: Dado que las carnicerías pueden tener un alto volumen de transacciones, la interfaz de usuario debe ser intuitiva y fácil de usar para acelerar el proceso de venta y minimizar errores.',
+					},
+					{
+						id: 4,
+						details:
+							'Seguridad y Cumplimiento: Garantizar la seguridad de los datos del cliente y cumplir con las regulaciones de protección de datos es fundamental. El sistema debe implementar medidas de seguridad robustas y estar en conformidad con las normativas aplicables.',
+					},
+				],
+				SocialSharingHeading: 'Comparte',
+				SocialSharing: [
+					{
+						id: 1,
+						name: 'LinkedIn',
+						icon: <FiLinkedin />,
+						url: 'https://linkedin.com/cristhian-cano',
+					}
+				],
+			},
+			RelatedProject: {
+				title: 'Proyectos Relacionados',
+				Projects: [
+					{
+						id: 2,
+						title: 'Aplicación Web',
+						name: 'Sistema POS',
+						img: bosque_1,
+					}
+				],
+			},
+		},
+		4: {
+			ProjectHeader: {
+				title: 'Inicio  de sesión para plataforma',
+				publishDate: 'May 3, 2023',
+				tags: 'UI / Frontend, PWA',
+			},
+			ProjectImages: [
+				{
+					id: 1,
+					title: 'Inicio de Sesion',
+					img: pwa_1,
+				},
+				{
+					id: 2,
+					title: 'Promt Instalación',
+					img: pwa_2,
+				},
+				{
+					id: 3,
+					title: 'Instrucciones',
+					img: pwa_3,
+				},
+			],
+			ProjectInfo: {
+				ClientHeading: 'Cliente',
+				CompanyInfo: [
+					{
+						id: 1,
+						title: 'Nombre',
+						details: 'Grupo Saberes S.A.S',
+					},
+					{
+						id: 2,
+						title: 'Servicios',
+						details: 'Software para colegios, selección de personal y prácticas hospitalarias',
+					},
+					{
+						id: 3,
+						title: 'Ubicacion',
+						details: 'Bogotá D.C',
+					},
+				],
+				ObjectivesHeading: 'Objetivo',
+				ObjectivesDetails:
+					'Desarrollar una aplicación React que permita a los usuarios iniciar sesión en una plataforma. La aplicación se instalará como una PWA para permitir el acceso a la plataforma sin conexión a Internet y permitirá que se reciban notificaciones',
+				Technologies:
+				{
+					title: 'Herramientas y Tecnologias',
+					techs: [
+						{ text: 'React JS', icon: <FaReact /> },
+						{ text: 'Firebase', icon: <BiLogoFirebase /> },
+						{ text: 'JavaScript', icon: <IoLogoJavascript /> },
+						{ text: 'Bootstrap', icon: <FaBootstrap /> },
+						{ text: 'MySQL', icon: <DiMysql /> },
+					],
+				},
+				ProjectDetailsHeading: 'Desafio',
+				ProjectDetails: [
+					{
+						id: 1,
+						details:
+							'Desarrollar una aplicación React que se comunique con un webservice de forma segura.',
+					},
+					{
+						id: 2,
+						details:
+							'Implementar el envío de notificaciones push up con Firebase de forma eficiente.',
+					},
+					{
+						id: 3,
+						details:
+							'Adaptar la aplicación para que funcione sin conexión a Internet',
+					}
+				],
+				SocialSharingHeading: 'Comparte',
+				SocialSharing: [
+					{
+						id: 1,
+						name: 'LinkedIn',
+						icon: <FiLinkedin />,
+						url: 'https://linkedin.com/cristhian-cano',
+					}
+				],
+			},
+			RelatedProject: {
+				title: 'Proyectos Relacionados',
+				Projects: [
+
 				],
 			},
 		}

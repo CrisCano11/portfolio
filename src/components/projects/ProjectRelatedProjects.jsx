@@ -14,7 +14,7 @@ const ProjectRelatedProjects = () => {
 			<div className="grid grid-cols-1 sm:grid-cols-4 gap-10">
 				{singleProjectData.RelatedProject.Projects.map((project) => {
 					return (
-						<NavLink to={`project/${project.id}`} key={project.id}>
+						<NavLink to={`/project/${project.id}`} key={project.id}>
 							<img
 								src={project.img}
 								className="rounded-xl cursor-pointer hover:scale-125 ease-in duration-30"

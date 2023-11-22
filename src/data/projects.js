@@ -62,7 +62,7 @@ export const projectsData =
             ProjectHeader: {
                 title: 'UI de gestión de proyectos - Desde el contexto',
                 publishDate: 'Abr 20, 2023',
-                tags: 'Administration / Backend',
+                tags: 'Administración / Backend',
             },
         },
         {
@@ -73,7 +73,7 @@ export const projectsData =
             ProjectHeader: {
                 title: 'UI de gestión de proyectos - Desde el contexto',
                 publishDate: 'Jul 2, 2022',
-                tags: 'Administration / Backend',
+                tags: 'Administración / Backend',
             },
         },
         {
