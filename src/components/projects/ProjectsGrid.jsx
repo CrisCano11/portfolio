@@ -36,7 +36,7 @@ const ProjectsGrid = () => {
                         mb-3
                         "
 				>
-					{isSpanish ? "Busca proyectos por titulo o categoria" : "Search projects by title or filter by category"}
+					{isSpanish ? "Busca proyectos por título o categoría" : "Search projects by title or filter by category"}
 				</h3>
 				<div
 					className="
@@ -53,7 +53,10 @@ const ProjectsGrid = () => {
 						<div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
 							<FiSearch className="text-ternary-dark dark:text-ternary-light w-5 h-5"></FiSearch>
 						</div>
-						<input 
+						<input
+						onChange={(e) => {
+							setSearchProject(e.target.value);
+						}} 
 						type="search" 
 						id="search" 
 						className="block w-full p-3 ps-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
