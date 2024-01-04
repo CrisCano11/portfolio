@@ -2,7 +2,11 @@ import { motion } from "framer-motion"
 import { FiX } from "react-icons/fi"
 import Button from "./reusable/Button"
 import useDetectLanguage from "../hooks/useDetectLanguage";
-
+import Send from "./api/Send";
+import { Formik } from "formik";
+import * as Yup from 'yup';
+import FormInput from './reusable/FormInput';
+import SubmitButton from "./reusable/SubmitButton";
 
 const selectOptionsEn = [
   'Web Application',
@@ -20,6 +24,26 @@ const selectOptionsEs = [
 
 const HireModal = ({ onClose, onRequest }) => {
   const isSpanish = useDetectLanguage();
+
+  const onSubmit = async (
+    { name, email, subject, message },
+    { setSubmitting, setErrors, resetForm }
+  ) => {
+    try {
+      await Send({ name, email, subject, message, spanish: isSpanish });
+      resetForm();
+    } catch (error) {
+      error.message ? setErrors({ "other": error.message }) : error;
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().trim().min(6, isSpanish ? "Minimo 6 caracteres" : "min 6 charts").required(isSpanish ? 'El nombre es requerido' : 'The name is required'),
+    subject: Yup.string().required(isSpanish ? 'Debe seleccionar un tipo de proyecto' : 'You must select a project type'),
+    email: Yup.string().email(isSpanish ? 'Email invalido' : 'invalid email').required(isSpanish ? 'Debe indicar un email' : 'The email is required')
+  });
 
   return (
     <motion.div
@@ -47,94 +71,146 @@ const HireModal = ({ onClose, onRequest }) => {
               </button>
             </div>
             <div className="modal-body p-5 w-full h-full">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
+              <Formik
+                initialValues={{
+                  name: "",
+                  email: "",
+                  subject: "",
+                  message: ""
                 }}
-                className="max-w-xl m-4 text-left"
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
               >
-                <div className="">
-                  <input
-                    className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-                    id="name"
-                    name="name"
-                    type="text"
-                    required=""
-                    placeholder={isSpanish ? 'Nombres' : 'Name'}
-                    aria-label={isSpanish ? 'Nombres' : 'Name'}
-                  />
-                </div>
-                <div className="mt-6">
-                  <input
-                    className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-                    id="email"
-                    name="email"
-                    type="text"
-                    required=""
-                    placeholder={isSpanish ? "Correo electrónico" : "Email"}
-                    aria-label={isSpanish ? "Correo electrónico" : "Email"}
-                  />
-                </div>
-                <div className="mt-6">
-                  <select
-                    className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    required=""
-                    aria-label={isSpanish ? "Categoria del proyecto" : "Project Category"}
+                {({
+                  values,
+                  handleSubmit,
+                  handleChange,
+                  errors,
+                  touched,
+                  handleBlur,
+                  isSubmitting
+                }) => (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="max-w-xl m-2 text-left"
                   >
-                    {isSpanish ? (
-                      selectOptionsEs.map((option) => (
-                        <option
-                          className="text-normal sm:text-md"
-                          key={option}
-                        >
-                          {option}
-                        </option>
-                      ))
-                    ) : (selectOptionsEn.map((option) => (
-                      <option
-                        className="text-normal sm:text-md"
-                        key={option}
+                    <FormInput
+                      inputLabel={isSpanish ? "Nombre completo" : "Full Name"}
+                      labelFor="name"
+                      inputType="text"
+                      inputId="name"
+                      inputName="name"
+                      placeholderText={isSpanish ? "Tu nombre" : "Your Name"}
+                      ariaLabelName="Name"
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {
+                      errors.name && touched.name && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                          <strong className="font-bold">Error! </strong>
+                          <span className="block sm:inline">{errors.name}</span>
+                        </div>
+                      )
+                    }
+                    <FormInput
+                      inputLabel={isSpanish ? "Correo electrónico" : "Email"}
+                      labelFor="email"
+                      inputType="email"
+                      inputId="email"
+                      inputName="email"
+                      placeholderText={isSpanish ? "Tu correo electrónico" : "Your email"}
+                      ariaLabelName="Email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {
+                      errors.email && touched.email && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                          <strong className="font-bold">Error! </strong>
+                          <span className="block sm:inline">{errors.email}</span>
+                        </div>
+                      )
+                    }
+                    <div className="mt-3">
+                      <label htmlFor="subject">Proyecto</label>
+                      <select
+                        className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        required=""
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        aria-label={isSpanish ? "Categoria del proyecto" : "Project Category"}
                       >
-                        {option}
-                      </option>
-                    )))}
-                  </select>
-                </div>
+                        <option
+                              className="text-normal sm:text-md"
+                              key="1"
+                            >
+                              {isSpanish ? 'Por favor seleccione...': 'Please choose one category'}
+                            </option>
 
-                <div className="mt-6">
-                  <textarea
-                    className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-                    id="message"
-                    name="message"
-                    cols="14"
-                    rows="6"
-                    aria-label={isSpanish ? "Detalles" : "Details"}
-                    placeholder={isSpanish ? "Descripción del proyecto" : "Project description"}
-                  ></textarea>
-                </div>
+                        {isSpanish ? (
+                          selectOptionsEs.map((option) => (
+                            <option
+                              className="text-normal sm:text-md"
+                              key={option}
+                              value={option}
 
-                <div className="mt-6 pb-4 sm:pb-1">
-                  <span
-                    onClick={onClose}
-                    type="submit"
-                    className="px-4
-											sm:px-6
-											py-2
-											sm:py-2.5
-											text-white
-											bg-indigo-500
-											hover:bg-indigo-600
-											rounded-md
-											focus:ring-1 focus:ring-indigo-900 duration-500"
-                    aria-label={isSpanish ? "Enviar Solicitud" : "Submit Request"}
-                  >
-                    <Button title={isSpanish ? "Enviar Solicitud" : "Send Request"} />
-                  </span>
-                </div>
-              </form>
+                            >
+                              {option}
+                            </option>
+                          ))
+                        ) : (selectOptionsEn.map((option) => (
+                          <option
+                            className="text-normal sm:text-md"
+                            key={option}
+                            value={option}
+                          >
+                            {option}
+                          </option>
+                        )))}
+                      </select>
+                      {
+                      errors.subject && touched.subject && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                          <strong className="font-bold">Error! </strong>
+                          <span className="block sm:inline">{errors.subject}</span>
+                        </div>
+                      )
+                    }
+                    </div>
+
+                    <div className="mt-3">
+                      <label
+                        className="block text-lg text-primary-dark dark:text-primary-light mb-2"
+                        htmlFor="message"
+                      >
+                        {isSpanish ? "Mensaje" : "Message"}
+                      </label>
+                      <textarea
+                        className="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+                        id="message"
+                        name="message"
+                        cols="14"
+                        rows="5"
+                        aria-label="Message"
+                      ></textarea>
+                    </div>
+                    {errors["-"] && (
+                      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong className="font-bold">Error! </strong>
+                        <span className="block sm:inline">{errors["other"]}</span>
+                      </div>
+                    )}
+                    <SubmitButton isSpanish={isSpanish} isSubmitting={isSubmitting} onClick={onClose} />
+                  </form>
+                )}
+
+              </Formik>
             </div>
             <div className="modal-footer mt-2 sm:mt-0 py-5 px-8 border0-t text-right">
               <span
@@ -153,7 +229,7 @@ const HireModal = ({ onClose, onRequest }) => {
           </div>
         </div>
       </main>
-    </motion.div>
+    </motion.div >
   )
 }
 
