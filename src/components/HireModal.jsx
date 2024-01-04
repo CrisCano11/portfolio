@@ -32,6 +32,7 @@ const HireModal = ({ onClose, onRequest }) => {
     try {
       await Send({ name, email, subject, message, spanish: isSpanish });
       resetForm();
+      onClose();
     } catch (error) {
       error.message ? setErrors({ "other": error.message }) : error;
     } finally {
