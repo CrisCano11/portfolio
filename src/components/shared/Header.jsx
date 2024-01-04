@@ -15,7 +15,7 @@ const Header = () => {
     const [showModal, setShowModal] = useState(false);
     const { activeTheme, setTheme } = useThemeSwitcher();
     const isSpanish = useDetectLanguage();
-    console.log(activeTheme)
+
     function toggleMenu() {
         if (!showMenu) {
             setShowMenu(true);
@@ -23,13 +23,14 @@ const Header = () => {
             setShowMenu(false);
         }
     }
-
     function showModalHire() {
         if (!showModal) {
-            document.getElementsByTagName('html')[0].classList.add('overflow-y-hidden');
+            document.getElementsByTagName('html')[0].
+                classList.add('overflow-y-hidden');
             setShowModal(true);
         } else {
-            document.getElementsByTagName('html')[0].classList.add('overflow-y-hidden');
+            document.getElementsByTagName('html')[0].
+                classList.remove('overflow-y-hidden');
             setShowModal(false);
         }
     }
@@ -132,9 +133,9 @@ const Header = () => {
                     <NavLink
                         to="/contact"
                         className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-secondary-light  font-bold sm:mx-4 mb-2 sm:py-2"
-                        aria-label={isSpanish ? "Contacto" :"Contact"}
+                        aria-label={isSpanish ? "Contacto" : "Contact"}
                     >
-                       {isSpanish ? "Contacto" : "Contact"}
+                        {isSpanish ? "Contacto" : "Contact"}
                     </NavLink>
                 </div>
                 <div className="hidden sm:flex justify-between items-center flex-col md:flex-row">
@@ -142,9 +143,9 @@ const Header = () => {
                         <span
                             onClick={showModalHire}
                             className="text-md font-general-medium bg-indigo-500 hover:bg-indigo-600 text-white shadow-sm rounded-md px-5 py-2.5 duration-300"
-                            aria-label={isSpanish ? "Contratarme":"Hire Me"}
+                            aria-label={isSpanish ? "Contratarme" : "Hire Me"}
                         >
-                            <Button title={isSpanish ? "Contratarme":"Hire Me"} />
+                            <Button title={isSpanish ? "Contratarme" : "Hire Me"} />
                         </span>
                     </div>
 
@@ -164,13 +165,14 @@ const Header = () => {
             </div>
 
             <div>
-                {showModal ? (
+                {showModal ? 
+                ( 
                     <HireModal
                         onClose={showModalHire}
                         onRequest={showModalHire}
                     />
-                ) : null}
-                {showModal ? showModalHire : null}
+                )
+                 : null}
             </div>
         </motion.nav>
     )
